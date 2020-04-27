@@ -12,18 +12,17 @@ import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 
-class LetterTile extends JPanel implements MouseListener {
+class QuickDrawTile extends JPanel implements MouseListener {
     private int colorR;
     private int colorG;
     private int colorB;
     private int colorR2;
     private int colorG2;
     private int colorB2;
-    private String letterChosen;
     private int shapeSelection;
     private String shapeString;
 
-    LetterTile() {
+    QuickDrawTile() {
         super();
         setBlack();
         setWhite();
@@ -77,22 +76,6 @@ class LetterTile extends JPanel implements MouseListener {
         if (shapeSelection != 1) {
             g.fillRect(0, 0, windowWidth, windowHeight);
         }
-    }
-    
-    public String toStringShape() {
-        return String.format("Drawn tile shape = %s", shapeString);
-    }
-
-    public String toStringLetter() {
-        return String.format("\nDrawn letter = %s", letterChosen);
-    }
-
-    public String toStringColor() {
-        return String.format("\nFilled Colors (RGB) = %d , %d , %d", colorR, colorG, colorB);
-    }
-
-    public String toStringColorContrast() {
-        return String.format("\nContrasting Color (RGB2)= %d , %d , %d\n", colorR2, colorG2, colorB2);
     }
 
     public void mouseReleased(MouseEvent e) {

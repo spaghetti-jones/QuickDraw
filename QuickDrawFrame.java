@@ -12,16 +12,16 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 
-class MosaicFrame extends JFrame implements ActionListener{
-    private ArrayList<LetterTile> letterTileList;
+class QuickDrawFrame extends JFrame implements ActionListener{
+    private ArrayList<QuickDrawTile> QuickDrawTileList;
 
-    MosaicFrame() {
-        System.out.println("MosaicFrame starting up...");
+    QuickDrawFrame() {
+        System.out.println("QuickDrawFrame starting up...");
 
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
 
-        setTitle("Mosaic");
+        setTitle("QuickDraw");
         setDefaultLookAndFeelDecorated(true);
         setBounds(400, 10, 800, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,7 +31,7 @@ class MosaicFrame extends JFrame implements ActionListener{
 
         fill.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-                for(LetterTile myTile : letterTileList) {
+                for(QuickDrawTile myTile : QuickDrawTileList) {
                     myTile.setBlack();
                 }
                 repaint();
@@ -43,27 +43,27 @@ class MosaicFrame extends JFrame implements ActionListener{
 
         white.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){  
-                for(LetterTile myTile : letterTileList) {
+                for(QuickDrawTile myTile : QuickDrawTileList) {
                     myTile.setWhite();
                 }
                 repaint();
             }
         });
 
-        JPanel letterTileGridPanel = new JPanel();
-        container.add(letterTileGridPanel, BorderLayout.CENTER);
-        letterTileGridPanel.setLayout(new GridLayout(12,12));
+        JPanel QuickDrawTileGridPanel = new JPanel();
+        container.add(QuickDrawTileGridPanel, BorderLayout.CENTER);
+        QuickDrawTileGridPanel.setLayout(new GridLayout(12,12));
 
-        letterTileList = new ArrayList<LetterTile>();
+        QuickDrawTileList = new ArrayList<QuickDrawTile>();
         for (int i = 1; i < 8000; i++) { //should have 144 total tiles
-            LetterTile myTile = new LetterTile();
-            letterTileList.add(myTile);
-            letterTileGridPanel.add(myTile);
+            QuickDrawTile myTile = new QuickDrawTile();
+            QuickDrawTileList.add(myTile);
+            QuickDrawTileGridPanel.add(myTile);
         }
     }
     
     public void actionPerformed(ActionEvent e) { //can use a string to randomize shape
-        for(LetterTile tile : letterTileList) {
+        for(QuickDrawTile tile : QuickDrawTileList) {
             tile.setBlack();
         }
         repaint();

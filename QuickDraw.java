@@ -8,11 +8,11 @@
  * In-class code for randomly selecting letter from string used
  */
 
-public class Mosaic {
+public class QuickDraw {
 
     public static void main(String[] args) {
-        System.out.println("Mosaic start...");
-        MosaicFrame frame = new MosaicFrame();
+        System.out.println("QuickDraw start...");
+        QuickDrawFrame frame = new QuickDrawFrame();
         frame.setVisible(true);
     }
 }
