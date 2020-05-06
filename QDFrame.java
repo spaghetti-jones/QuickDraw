@@ -2,52 +2,36 @@
  * @author Luis Barrera
  **/
 
-//import java.awt.AlphaComposite;
-//import java.awt.Dimension;
-//import java.awt.EventQueue;
-//import java.awt.Graphics;
-//import java.awt.Graphics2D;
-//import java.awt.Point;
-//import java.awt.Rectangle;
-//import java.awt.event.MouseAdapter;
-//import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-
-//import java.util.ArrayList;
-//import java.util.List;
+import java.awt.Graphics;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JToolBar;
+
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
-//import javax.swing.JLabel;
-//import javax.swing.UIManager;
-//import javax.swing.UnsupportedLookAndFeelException;
 
-public class QDFrame extends QDBrush {
-
+public class QDFrame  {
 	public QDFrame() {
         JFrame qdFrame = new JFrame("QuickDraw");
-
+        
         Container pane = qdFrame.getContentPane();
         pane.setLayout(new BorderLayout()); 
-
+        pane.setBackground(Color.WHITE);
+  
+        QDBrush brush = new QDBrush(Color.BLACK);
+        pane.add(brush);
+        
         qdFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        qdFrame.setBackground(Color.WHITE);
-        qdFrame.add(new QDBrush());
         qdFrame.pack();
-        qdFrame.setLocationRelativeTo(null);
+        qdFrame.setLocationRelativeTo(null); //center frame
         qdFrame.setVisible(true);
-
-        //QDBrush qdPanel = new QDBrush();
-        //pane.add(qdPanel);
 
         JToolBar tools = new JToolBar();
         pane.add(tools, BorderLayout.NORTH);
@@ -66,8 +50,6 @@ public class QDFrame extends QDBrush {
 
         eraseAll.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
-                //qdFrame.setWhite();
-                //qdFrame.getContentPane().removeAll();
                 qdFrame.repaint();
             }
         });
@@ -81,16 +63,120 @@ public class QDFrame extends QDBrush {
         ButtonGroup toolOptions = new ButtonGroup();
         toolOptions.add(brushTool);
         toolOptions.add(eraserTool);
-
+        
         eraserTool.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 System.out.println("Eraser tool selected!");
+                brush.setColor(Color.WHITE);
             }
         });
+
         
         brushTool.addActionListener(new ActionListener(){  
             public void actionPerformed(ActionEvent e){
                 System.out.println("Brush tool selected!");
+                brush.setColor(Color.BLACK);
+            }
+        });
+
+        JToolBar colors = new JToolBar();
+        pane.add(colors, BorderLayout.SOUTH);
+
+        JRadioButton red = new JRadioButton("red", false);
+        colors.add(red, BorderLayout.NORTH);
+
+        JRadioButton green = new JRadioButton("green", false);
+        colors.add(green, BorderLayout.NORTH);
+
+        JRadioButton blue = new JRadioButton("blue", false);
+        colors.add(blue, BorderLayout.NORTH);
+
+        JRadioButton yellow = new JRadioButton("yellow", false);
+        colors.add(yellow, BorderLayout.NORTH);
+
+        JRadioButton black = new JRadioButton("black", true);
+        colors.add(black, BorderLayout.NORTH);
+
+        ButtonGroup ColorPicker = new ButtonGroup();
+        ColorPicker.add(red);
+        ColorPicker.add(green);
+        ColorPicker.add(blue);
+        ColorPicker.add(yellow);
+        ColorPicker.add(black);
+
+        red.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("red selected!");
+                brush.setColor(Color.RED);
+            }
+        });
+
+        green.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("green selected!");
+                brush.setColor(Color.green);
+            }
+        });
+
+        blue.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("blue selected!");
+                brush.setColor(Color.blue);
+            }
+        });
+
+        yellow.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("yellow selected!");
+                brush.setColor(Color.yellow);
+            }
+        });
+
+        black.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("black selected!");
+                brush.setColor(Color.black);
+            }
+        });
+
+        JToolBar sizes = new JToolBar();
+        pane.add(sizes, BorderLayout.EAST);
+
+        JRadioButton s = new JRadioButton("S", true);
+        sizes.add(s, BorderLayout.NORTH);
+
+        JRadioButton m = new JRadioButton("M", false);
+        sizes.add(m, BorderLayout.CENTER);
+
+        JRadioButton l = new JRadioButton("L", false);
+        sizes.add(l, BorderLayout.SOUTH);
+
+        ButtonGroup sizePicker = new ButtonGroup();
+        sizePicker.add(s);
+        sizePicker.add(m);
+        sizePicker.add(l);
+
+        s.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("small selected!");
+                brush.setBrushWidth(6);
+                brush.setBrushHeight(6);
+            }
+        });
+
+        m.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("medium selected!");
+                brush.setBrushWidth(12);
+                brush.setBrushHeight(12);
+            }
+        });
+
+        l.addActionListener(new ActionListener(){  
+            public void actionPerformed(ActionEvent e){
+                System.out.println("large selected!");
+                brush.setBrushWidth(24);
+                brush.setBrushHeight(24);
             }
         });
     }
